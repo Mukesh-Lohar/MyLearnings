@@ -1,7 +1,4 @@
-
-
 from documentation.documentation import Document
-
 
 document = Document("Sample Document", "John Doe")
 document.add_heading("# Introduction")
