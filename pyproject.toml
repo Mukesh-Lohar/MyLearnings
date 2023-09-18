@@ -1,11 +1,85 @@
+[tool.poetry]
+name = "mylearnings"
+version = "0.1.0"
+description = "\"My very own notes maker\""
+authors = ["Mukesh Lohar"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+ruff = "^0.0.290"
+pytest = "^7.4.2"
+pre-commit = "^3.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.ruff]
-# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
-select = ["E", "F"]
-ignore = []
+# Enable the pycodestyle (`E`) and Pyflakes (`F`) rules by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "C90", # mccabe
+    "F",   # pyflakes
+    "I",   # isort
+    "D",   #pydocstyle
+    "C4",  # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "YTT", # flake8-2020
+    # "ANN", # flake8-annotations - Skip for now since it's difficult to standardize.
+    "S",   # flake8-bandit
+    "BLE", # flake8-blind-except
+    "FBT", # flake8-boolean-trap
+    # "A", # flake8-builtins - skip for now, but interesting to consider in the future.
+    "COM", # flake8-commas
+    # "DTZ", # flake8-datetimez - skip, doesn't seem important for now
+    "T10", # flake8-debugger
+    # "DJ",  # flake8-django - we don't use django
+    "EM",  # flake8-errmsg
+    "EXE", # flake8-executable
+    "ISC", # flake8-implicit-str-concat
+    "ICN", # flake8-import-conventions
+    "G",   # flake8-logging-format
+    "INP", # flake8-no-pep420
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "PYI", # flake8-pyi
+    "PT",  # flake8-pytest-style
+    "Q",   # flake8-quotes
+    "RSE", # flake8-raise
+    "RET", # flake8-return
+    "SLF", # flake8-self
+    "SIM", # flake8-simplify
+    "TID", # flake8-tidy-imports
+    "TCH", # flake8-type-checking
+    "INT", # flake8-gettext
+    # "ARG", # flake8-unused-arguments - causes more trouble then value
+    "PTH", # flake8-use-pathlib
+    "ERA", # eradicate
+    # "PD",  # pandas-vet - pandas not used
+    "PGH", # pygrep-hooks
+    "PL",  # pylint
+    "TRY", # tryceratops
+    # "NPY", # NumPy-specific rules - we don't currently use numpy
+    "RUF", # Ruff-specific rules
+]
+ignore = ["D100", "D101","D104" ,"D103","D102"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
-fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+fixable = ["ALL"]
 unfixable = []
+fix = true
+ignore-init-module-imports = true
+
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -29,15 +103,11 @@ exclude = [
     "build",
     "dist",
     "node_modules",
-    "venv",
 ]
+per-file-ignores = {}
 
 # Same as Black.
 line-length = 88
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
-[tool.ruff.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
-max-complexity = 10
